@@ -1,4 +1,4 @@
-progressive websocket-enhancement, unixy, embed logs in UI etc  
+unixy, progressive websocket-enhancement for CLI-scripts, embed logs in UI etc  
 
 ![](https://raw.githubusercontent.com/coderofsalvation/shellhook/master/www/index.gif)
 
