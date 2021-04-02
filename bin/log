@@ -1,0 +1,11 @@
+#!/bin/bash
+source $(dirname $0)/.shellhook
+pid=${QUERY_STRING//[^[:digit:].-]/}
+cmd="tail -f"
+
+[[ $HTTP_UPGRADE == "websocket" ]] || {
+  echo -e "content-type: text/plain\n\n"
+  cmd="cat"
+}
+
+${cmd} $(dirname $0)/../log/${pid} 2>&1

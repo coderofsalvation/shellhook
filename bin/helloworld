@@ -1,0 +1,11 @@
+#!/bin/bash
+source $(dirname $0)/.shellhook
+
+# serve curl requests with a logfile
+is_browser && is_curl && run_in_background 
+
+
+{
+  date && sleep 1s && date && sleep 1s
+  set | grep -E '^(HTTP_|HOST|QUERY_STRING|REQUEST|SERVER)'
+} | datify

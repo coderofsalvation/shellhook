@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      #count {
+        font: bold 15px arial;
+        margin: auto;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <pre id="log"></pre>
+    
+    <script>
+      const cmd = String(document.location.search).substr(1)
+
+      var ws = new WebSocket('ws://'+document.location.host+'/'+cmd);
+      ws.onopen = function() {
+        document.body.style.opacity = '1';
+      };
+      ws.onclose = function() {
+        document.body.style.opacity = '0.6';
+      };
+      ws.onmessage = function(event) {
+        document.getElementById('log').textContent += event.data+"\n";
+      };
+    </script>
+    
+  </body>
+</html>

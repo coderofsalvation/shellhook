@@ -1,0 +1,25 @@
+# add you custom functions here
+
+datify(){
+  cat | awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }'
+}
+
+run_in_background(){
+  echo -e "content-type: text/plain\n\n$SERVER_NAME/log?$$"
+  PATH_INFO="" HTTP_USER_AGENT="" nohup ./$0 &> ../log/$$ &
+  exit
+}
+
+redirect(){
+  echo -e "HTTP/1.1 302 Found\nLocation: $1\n" && exit
+}
+
+is_browser(){
+  [ -n "$PATH_INFO" ] && return 0 || return 1
+}
+
+is_curl(){
+  [[ "$HTTP_USER_AGENT" =~ "curl" ]] && return 0 || return 1
+}
+
+is_browser && ! is_curl && redirect "/ws?${PATH_INFO//\//}?${QUERY_STRING}"
