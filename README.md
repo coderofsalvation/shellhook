@@ -1,3 +1,6 @@
+progressive websocket-enhancement, unixy, embed logs in UI etc  
+
+![](https://raw.githubusercontent.com/coderofsalvation/shellhook/master/www/index.gif)
 
 ## Install
 
